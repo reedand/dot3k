@@ -287,11 +287,10 @@ Sets a value for a configuration option within a specific section of the configu
 
 ```
 get_option(self, section, option, default=None)
-
+```
 Gets a value for a confiuration option from a specific section of the configuration file for a plugin returning the default if no entry exists.
 
 * self - instance of plugin
 * section - section name within configuration file (e.g. "[Display]")
 * option - configuration option being retrieved (e.g. "contrast")
 * default - None or a value to use in the absence of an entry in the configuration file (e.g. "40")
-```
