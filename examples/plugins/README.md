@@ -137,7 +137,7 @@ def setup(self, config):
 ```python
 	menu.write_row(row, string)
 ```
-*write_row(row, string)* - writes a string to the lcd at the row it is passed
+**write_row(row, string)** - writes a string to the lcd at the row it is passed
 	* row - defines which row to write to (0..2 where 0 is the first row and 2 is the last row) [required]
 	* string -  string of text to write to the lcd [required]
 
@@ -157,7 +157,7 @@ menu.write_option(row=1, icon='>', text='this', scroll=True)
 menu.clear_row(row)
 ```
 
-**clear_row(row)* - called to clear the specified row on the lcd.  Each pass of the redraw method should call this for any rows not being written to in order to prevent artifacts on the lcd from other plugins, etc.
+**clear_row(row)** - called to clear the specified row on the lcd.  Each pass of the redraw method should call this for any rows not being written to in order to prevent artifacts on the lcd from other plugins, etc.
 	* row - defines which row to clear (0..2 where 0 is the first row and 2 is the last row) [required]
 
 ### Options
