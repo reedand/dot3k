@@ -158,12 +158,12 @@ class Menu:
 
     def save(self):
         if version_info[0] >= 3:
-            with open('dot3k.cfg', 'wt', encoding='utf-8') as configfile:
+            with open(self.config_file, 'wt', encoding='utf-8') as configfile:
                 self.config.write(configfile)
         else:
-            with open('dot3k.cfg', 'wb') as configfile:
+            with open(self.config_file, 'wb') as configfile:
                 self.config.write(configfile)
-        print('Config saved to dot3k.cfg')
+        print(str('Config saved to ' + self.configfile))
 
     def _setup_menu(self, menu):
         for key in menu:
