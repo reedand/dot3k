@@ -1,6 +1,6 @@
-#Understanding Menus
+# Understanding Menus
 
-##Instantiating an instance of the menu class
+## Instantiating an instance of the menu class
 
 The menu framework provided by the dot3k library enables us to create a menu instance and pass a list of menu items for display on the dot3k, a corresponding function to call when each menu option is selected or a sub-menu to display
 
@@ -98,16 +98,19 @@ This will display a menu with the following options.
 
 * Awesome
 * Clock
+* System
+    * Reboot Pi
+    * Shutdown Pi
 * Status
-	* IP
-	* CPU
-	* Temp
+	* CPU-GPU Temp
+	* CPU Usage
+	* IP Address
 
 At this juncture it's worth mentioning that creating the menu as we did above, the menu options may not be presented to the user in the order defined in the menu instance.  To present the menu options in a specific order we need to use a slightly different method described in the *Ordered Menu Example* below.
 
 We can also present a menu to the user and automatically navigate that menu without user input (for example to demo the functionality of our menu) as shown in the *Auto Menu Example* below.  
 
-##Controlling the Menu with the Joystick
+## Controlling the Menu with the Joystick
 
 Following on with our example of using the menu frawework we need to include some additional code to allow the user to navigate the menu using the dot3k's joystick.
 
@@ -145,7 +148,7 @@ def handle_button(pin):
     menu.select()
 ```
 
-##Drawing the Menu
+## Drawing the Menu
 
 Finally we need to draw our menu.  To do this we call `menu.redraw()` however because we want to redraw the menu to the lcd periodically as the user interacts with it and as the plugins update the lcd, we call this within a while loop.  We want the while loop to continue indefinitely so we pass it a condition that will always evaluate to True.  In addition to `menu.redraw()` we also use the sleep method to suspend execution for approximately half a second each pass through our while loop.  Without this our while loop would be contantly redrawing the menu likely causing noticeable flickering on the lcd and preventing the user from interacting with the menu.  
 
@@ -155,21 +158,21 @@ while True:
     time.sleep(0.05)
 ```
 
-##Plugins
+## Plugins
 
 To add additional plugins to our menu we simply need to add additional import statements to locate the plugins' python file in the plugins directory then add a menu option that calls it.  We can utilise existing plugins or create our own.
 
 See [dot3k Plugin Guide](../examples/plugins/README.md) for information on creating your own plugins
 
-##Advanced Menu Setup
+## Advanced Menu Setup
 
 As we already saw above, an unordered menu is the simplest alternative to instantiate a menu, pass the structure for our menu, the lcd instance, a method to call when idle and the number of seconds before the menu is considered idle.
 
-###Unordered Menu Example
+### Unordered Menu Example
 
 See [menu.py](../examples/dot3k/advanced/menu.py) for an additional example of an unordered menu.
 
-###Ordered Menu Example
+### Ordered Menu Example
 
 To create an ordered menu we could instead instantiate our menu with the following.  Note this would replace the **menu = ...** code earlier in the document. 
 
@@ -195,7 +198,7 @@ menu.add_item('Status/IP Address', IPAddress())
 
 See [orderedmenu.py](../examples/dot3k/advanced/orderedmenu.py) for a further example of an ordered menu.
 
-###Auto Menu Example
+### Auto Menu Example
 
 Once we've instantiated our menu, added our code to control it with the joystick and our while loop to redraw it we could also add additional code to automatically navigate the menu.  
 
@@ -227,7 +230,7 @@ while 1:
 
 See [automenu.py](../examples/dot3k/advanced/automenu.py) for a further example of an automenu.
 
-###Passing `*args` or `**kwargs` When Instantiating Our Menu  
+### Passing `*args` or `**kwargs` When Instantiating Our Menu  
 
 So far when instantiating our menu we've used `*args' with the following structure:
 
@@ -254,7 +257,7 @@ menu = Menu(
 * input_handler - instance or class to call when requesting user input
 * config_file - text file containing menu configuration items located in user's home directory (defaults to dot3k.cfg if not present)
 
-###Menu Configuration File
+### Menu Configuration File
 
 By default the menu utilises dot3k.cfg located in the user's home directroy to store and retrieve menu configuration items for each plugin.
 
@@ -267,14 +270,28 @@ contrast = 45
 
 The setup method in the Contrast class attempts to retrieve this value from the configuration file and sets the contrast of the lcd accordingly or defaults to a value of 40 if no configuration entry is found.
 
-####Storing a menu option configuration item in the configuration file
+#### Storing a menu option configuration item in the configuration file
 
 ```
 set_option(self, section, option, value)
 ```
 
-####Retrieving a menu option onfiguration item from the configuration file
+Sets a value for a configuration option within a specific section of the configuration file for a plugin.
+
+* self - instance of plugin
+* section - section name within configuration file (e.g. "[Display]")
+* option - configuration option being set (e.g. "contrast")
+* value - value to set for configuration option (e.g. "45")
+
+#### Retrieving a menu option onfiguration item from the configuration file
 
 ```
 get_option(self, section, option, default=None)
+
+Gets a value for a confiuration option from a specific section of the configuration file for a plugin returning the default if no entry exists.
+
+* self - instance of plugin
+* section - section name within configuration file (e.g. "[Display]")
+* option - configuration option being retrieved (e.g. "contrast")
+* default - None or a value to use in the absence of an entry in the configuration file (e.g. "40")
 ```

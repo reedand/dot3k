@@ -1,6 +1,6 @@
-#Dot3k Plugin Guide
+# Dot3k Plugin Guide
 
-##MenuOption
+## MenuOption
 
 So, you want to make a plugin, huh?
 
@@ -8,7 +8,7 @@ Dot3k has a handy class, MenuOption, you can inherit from to build menu plugins.
 
 When a menu plugin is run, it'll take over the screen and all joystick input will be passed to it.
 
-###Example
+### Example
 
 This super simple example is what you need to get something displaying from your plugin on the Dot3k LCD. Easy!
 ```python
@@ -24,7 +24,7 @@ Every time redraw is called, the parent menu sends itself and lets you call writ
 
 menu.write_row and menu.write_option will always truncate any text that doesn't fit on the screen. You can implement a scrolling marquee, but doing this automatically is on the feature roadmap!
 
-###Methods
+### Methods
 
 MenuOption has the following methods which you can override:
 
@@ -160,7 +160,7 @@ menu.clear_row(row)
 **clear_row(row)* - called to clear the specified row on the lcd.  Each pass of the redraw method should call this for any rows not being written to in order to prevent artifacts on the lcd from other plugins, etc.
 	* row - defines which row to clear (0..2 where 0 is the first row and 2 is the last row) [required]
 
-###Options
+### Options
 
 MenuOption also includes the methods set_option and get_option for saving and loading options from the configuration file (dot3k.cfg or other file as defined in Menu instance).
 
