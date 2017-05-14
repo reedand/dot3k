@@ -35,17 +35,17 @@ def __init__(self):
 	MenuOption.__init__(self)
 ```
 
-`__init__` is called once when the instance of MenuOption is first created and is used to initialise the plugin.
+`__init__` is called once when the instance of MenuOption is first created and is used to initialise the plugin.  
 
-	* self - instance of the MenuOption plugin which is passed to the method
+	* self - instance of the MenuOption plugin which is passed to the method  
 
 ```python
 def up(self):
 	# action to perform when joystick up is pressed
 	return value
 ```
-`up` is called when the joystick is pressed up, or the menu gets the up command.
-		* self - instance of the MenuOption plugin which is passed to the method
+`up` is called when the joystick is pressed up, or the menu gets the up command.  
+		* self - instance of the MenuOption plugin which is passed to the method  
 
 ```python
 def down(self):
@@ -79,16 +79,16 @@ def select(self):
 	return value
 ```
 
-`select` - by default this returns true and causes the menu to exit your plugin, return false to prevent.
-		* self - instance of the MenuOption plugin which is passed to the method
+`select` - by default this returns true and causes the menu to exit your plugin, return false to prevent.  
+		* self - instance of the MenuOption plugin which is passed to the method  
 
 ```python
 def redraw(self, menu):
 	#actions to perform every draw pass
 ```
 
-`redraw` - called every draw pass, you can draw using menu.write_row here, **make sure to clear_row rows you don't use.**
-	* self - instance of the MenuOption plugin which is passed to the method
+`redraw` - called every draw pass, you can draw using menu.write_row here, **make sure to clear_row rows you don't use.**  
+	* self - instance of the MenuOption plugin which is passed to the method  
 
 ```python
 def input_prompt(self):
@@ -98,8 +98,9 @@ def input_prompt(self):
         return 'Prompt:'
 ```
 
-`input_prompt` - provides the prompt used by the input plugin and presented to the user when requesting input.
-		* self - instance of the MenuOption plugin which is passed to the method
+`input_prompt` - provides the prompt used by the input plugin and presented to the user when requesting input.  
+		* self - instance of the MenuOption plugin which is passed to the method  
+
 
 ```python
 def receive_input(self, value):
@@ -110,19 +111,19 @@ def receive_input(self, value):
 ```
 
 `receive_input` - called when the user has entered a value with the input plugin
-	* self - instance of the MenuOption plugin which is passed to the method [required]
-  	* value - input received from the input plugin [required]
+	* self - instance of the MenuOption plugin which is passed to the method [required]  
+  	* value - input received from the input plugin [required]  
 
-`begin` - called when the menu enters your plugin, use to start games, reset things, etc.
-		* self - instance of the MenuOption plugin which is passed to the method
+`begin` - called when the menu enters your plugin, use to start games, reset things, etc.  
+		* self - instance of the MenuOption plugin which is passed to the method  
 
 ```python
 def cleanup(self):
         # action to perform when exiting plugin.
 ```
 
-`cleanup` - called when the menu leaves your plugin.
-	* self - instance of the MenuOption plugin which is passed to the method [required]
+`cleanup` - called when the menu leaves your plugin.  
+	* self - instance of the MenuOption plugin which is passed to the method [required]  
 
 ```python
 def setup(self, config):
@@ -130,16 +131,16 @@ def setup(self, config):
         #other setup actions to perform here 
 ```
 
-`setup(self, config)` - the config is passed to this method by default, you should overide using this method
-	* self - instance of the MenuOption plugin which is passed to the method [required]
-	* config - configuration data [required]
+`setup(self, config)` - the config is passed to this method by default, you should overide using this method  
+	* self - instance of the MenuOption plugin which is passed to the method [required]  
+	* config - configuration data [required]  
 
 ```python
 	menu.write_row(row, string)
 ```
-`write_row(row, string)` - writes a string to the lcd at the row it is passed
-	* row - defines which row to write to (0..2 where 0 is the first row and 2 is the last row) [required]
-	* string -  string of text to write to the lcd [required]
+`write_row(row, string)` - writes a string to the lcd at the row it is passed  
+	* row - defines which row to write to (0..2 where 0 is the first row and 2 is the last row) [required]  
+	* string -  string of text to write to the lcd [required]  
 
 ```python
 menu.write_option(row=0, text='menu option', scroll=True)
@@ -147,18 +148,18 @@ menu.write_option(row=1, text='other')
 menu.write_option(row=1, icon='>', text='this', scroll=True)
 ```
 
-`write_option(row,icon,text,scroll)` - writes a menu option to the lcd 
-	* row - defines which row to write to (0..2 where 0 is the first row and 2 is the last row) [required]
-	* icon - defines the icon to display with the option [optional]
-	* text - string of text to write to the lcd [required]
-	* scroll - True or False value determining whether the text should scroll on the lcd [optional - defaults to false]
+`write_option(row,icon,text,scroll)` - writes a menu option to the lcd  
+	* row - defines which row to write to (0..2 where 0 is the first row and 2 is the last row) [required]  
+	* icon - defines the icon to display with the option [optional]  
+	* text - string of text to write to the lcd [required]  
+	* scroll - True or False value determining whether the text should scroll on the lcd [optional - defaults to false]  
 
 ```python
 menu.clear_row(row)
 ```
 
-`clear_row(row)` - called to clear the specified row on the lcd.  Each pass of the redraw method should call this for any rows not being written to in order to prevent artifacts on the lcd from other plugins, etc.
-	* row - defines which row to clear (0..2 where 0 is the first row and 2 is the last row) [required]
+`clear_row(row)` - called to clear the specified row on the lcd.  Each pass of the redraw method should call this for any rows not being written to in order to prevent artifacts on the lcd from other plugins, etc.  
+	* row - defines which row to clear (0..2 where 0 is the first row and 2 is the last row) [required]  
 
 ### Options
 
