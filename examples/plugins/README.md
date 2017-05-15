@@ -110,9 +110,9 @@ def receive_input(self, value):
         # perform action with value which contains the input entered by the user
 ```
 
-`receive_input` - called when the user has entered a value with the input plugin
-	* self - instance of the MenuOption plugin which is passed to the method [required]  
-  	* value - input received from the input plugin [required]  
+`receive_input` - called when the user has entered a value with the input plugin.    
+    * self - instance of the MenuOption plugin which is passed to the method [required]  
+    * value - input received from the input plugin [required]  
 
 `begin` - called when the menu enters your plugin, use to start games, reset things, etc.  
 		* self - instance of the MenuOption plugin which is passed to the method  
@@ -145,7 +145,7 @@ def setup(self, config):
 ```python
 menu.write_option(row=0, text='menu option', scroll=True)
 menu.write_option(row=1, text='other')
-menu.write_option(row=1, icon='>', text='this', scroll=True)
+menu.write_option(row=2, icon='>', text='this', scroll=True)
 ```
 
 `write_option(row,icon,text,scroll)` - writes a menu option to the lcd  
@@ -153,6 +153,16 @@ menu.write_option(row=1, icon='>', text='this', scroll=True)
 	* icon - defines the icon to display with the option [optional]  
 	* text - string of text to write to the lcd [required]  
 	* scroll - True or False value determining whether the text should scroll on the lcd [optional - defaults to false]  
+	* `**kwargs` key word arguments for `write_option` [optional]
+		** row - integer (0..2) defining which row to write to. [optional defaults to 0]
+		** text - string to write to the row. [optional defaults to '']
+		** icon - icon for the row. [optional defaults to '']
+		** margin - Integer number of spaces to prepend to text [optional defaulting to None]
+		** scroll - boolean indicating True to scroll text in menu_option or False to not scroll. [optional defaults to False]
+		** scroll_speed - Integer speed to scroll text with [optional defaults to 200]
+		** scroll_repeat - delay in milliseconds to wait after completing scrolling text before repeating. [optional defaults to 10000]
+		** scroll_delay - delay in milliseconds to wait between scrolling text in menu_option. [optional defaults to 2000]
+		** scroll_padding - string to append to text as padding when scrolling. [optional defaults to 10000]
 
 ```python
 menu.clear_row(row)

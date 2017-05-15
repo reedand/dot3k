@@ -202,7 +202,7 @@ See [orderedmenu.py](../examples/dot3k/advanced/orderedmenu.py) for a further ex
 
 Once we've instantiated our menu, added our code to control it with the joystick and our while loop to redraw it we could also add additional code to automatically navigate the menu.  
 
-To do this we could add a `millis()` function to return the current time in milliseconds and an 'advance()'' function to advance through the menu.  Adding the 'advance()'' function to our while loop steps through menu prior to redrawing it.  
+To do this we could add a `millis()` function to return the current time in milliseconds and an `advance()` function to advance through the menu.  Adding the `advance()` function to our while loop steps through menu prior to redrawing it.  
 
 ```python
 def millis():
@@ -272,7 +272,7 @@ The setup method in the Contrast class attempts to retrieve this value from the 
 
 #### Storing a menu option configuration item in the configuration file
 
-```
+```python
 set_option(self, section, option, value)
 ```
 
@@ -285,7 +285,7 @@ Sets a value for a configuration option within a specific section of the configu
 
 #### Retrieving a menu option onfiguration item from the configuration file
 
-```
+```python
 get_option(self, section, option, default=None)
 ```
 Gets a value for a confiuration option from a specific section of the configuration file for a plugin returning the default if no entry exists.
