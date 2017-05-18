@@ -163,7 +163,7 @@ class Menu:
         else:
             with open(self.config_file, 'wb') as configfile:
                 self.config.write(configfile)
-        print(str('Config saved to ' + self.configfile))
+        print(str('Config saved to ' + self.config_file))
 
     def _setup_menu(self, menu):
         for key in menu:
